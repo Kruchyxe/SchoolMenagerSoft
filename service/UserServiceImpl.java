@@ -1,5 +1,7 @@
 package pl.coderslab.schoolmenagersoft.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.coderslab.schoolmenagersoft.model.Role;
 import pl.coderslab.schoolmenagersoft.model.User;
@@ -24,5 +26,10 @@ public class UserServiceImpl implements UserService{
                 registerDto.getPassword(), Arrays.asList(new Role("USER_ROLE")));
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
     }
 }
