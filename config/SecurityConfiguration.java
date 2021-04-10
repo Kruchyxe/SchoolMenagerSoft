@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,7 +18,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     private UserService userService;
-@Autowired
+
     public SecurityConfiguration(UserService userService) {
         this.userService = userService;
     }
@@ -33,6 +34,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authentication.setUserDetailsService(userService);
         authentication.setPasswordEncoder(passwordEncoder());
         return authentication;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
