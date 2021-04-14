@@ -32,6 +32,18 @@ public class Student {
     public Student() {
     }
 
+    public Student(String firstName, String lastName, int pesel, int age, int parentMobileNumber, String parentMail, LocalDate schoolStartDate, LocalDate schoolEndDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pesel = pesel;
+        this.age = age;
+        this.parentMobileNumber = parentMobileNumber;
+        this.parentMail = parentMail;
+        this.schoolStartDate = schoolStartDate;
+        this.schoolEndDate = schoolEndDate;
+    }
+
     public Long getId() {
         return id;
     }
