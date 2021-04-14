@@ -20,8 +20,7 @@ public class StudentController {
 
     @GetMapping("/studentlist")
     public String studentList(Model model){
-        List<StudentDto> students = studentService.findAllStudents();
-        model.addAttribute("student", students);
+        model.addAttribute("student", studentService.findAllStudents());
         return "studentlist";
     }
 }
