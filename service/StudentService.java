@@ -1,15 +1,18 @@
 package pl.coderslab.schoolmenagersoft.service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.coderslab.schoolmenagersoft.model.Student;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
-public interface StudentService extends UserDetailsService {
+import java.util.List;
+import java.util.Optional;
 
-    Student save(StudentDto studentDto);
-    Student findAll(StudentDto studentDto);
-    Student delete(StudentDto studentDto);
-    Student findById(StudentDto studentDto);
+public interface StudentService {
+
+    Student addStudent(StudentDto studentDto);
+    List<StudentDto> findAllStudents();
+    Student deleteStudentById(Long id);
+    Optional<Student> getStudent(StudentDto studentDto);
+    Student updateStudent(StudentDto studentDto);
 
 
 }
