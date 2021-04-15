@@ -40,8 +40,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student deleteStudentById(Long id) {
-        return null;
+    public void deleteStudentById(Long id)  {
+        studentRepository.deleteById(id);
     }
 
     @Override

@@ -3,10 +3,7 @@ package pl.coderslab.schoolmenagersoft.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.schoolmenagersoft.service.StudentService;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
@@ -40,6 +37,12 @@ public class StudentController {
     @PostMapping("/addstudents")
     public String addNewStudent(@ModelAttribute("student") StudentDto studentDto) {
         studentService.addStudent(studentDto);
+        return "redirect:/students";
+    }
+
+    @GetMapping("/deletestudent")
+    public String deleteStudent(Long id){
+        studentService.deleteStudentById(id);
         return "redirect:/students";
     }
 
