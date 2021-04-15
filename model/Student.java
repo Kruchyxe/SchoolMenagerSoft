@@ -1,5 +1,7 @@
 package pl.coderslab.schoolmenagersoft.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -25,8 +27,10 @@ public class Student  {
     @Column(name = "parent_email")
     private String parentMail;
     @Column(name = "start_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolStartDate;
     @Column(name = "end_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolEndDate;
 
 

@@ -1,6 +1,8 @@
 package pl.coderslab.schoolmenagersoft.web.dto;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 
@@ -13,7 +15,9 @@ public class StudentDto {
     private int age;
     private int parentMobileNumber;
     private String parentMail;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolStartDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolEndDate;
 
     public StudentDto() {
