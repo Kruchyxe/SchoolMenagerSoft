@@ -46,5 +46,15 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    @GetMapping("/detailsstudent")
+    public String showEditForm(long id, Model model) {
+        model.addAttribute("student", studentService.getStudent(id));
+        return "/detailsstudent";
+    }
+
+
+
+
+
 
 }
