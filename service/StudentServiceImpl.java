@@ -52,11 +52,8 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Student updateStudent(StudentDto studentDto) {
-        Student student = new Student(studentDto.getFirstName(), studentDto.getLastName(),
-                studentDto.getPesel(), studentDto.getAge(), studentDto.getParentMobileNumber(), studentDto.getParentMail(),
-                studentDto.getSchoolStartDate(), studentDto.getSchoolEndDate());
-        return studentRepository.save(student);
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
     }
 
 
