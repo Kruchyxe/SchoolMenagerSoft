@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.schoolmenagersoft.service.StudentService;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
+import java.awt.print.Book;
+
 
 @Controller
 @RequestMapping("/students")
@@ -18,10 +20,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @ModelAttribute("student")
-    public StudentDto studentDto(){
-        return new StudentDto();
-    }
+
 
     @GetMapping()
     public String studentList(Model model){
@@ -47,14 +46,20 @@ public class StudentController {
     }
 
     @GetMapping("/detailsstudent")
-    public String showEditForm(long id, Model model) {
+    public String showDetailForm(long id, Model model) {
         model.addAttribute("student", studentService.getStudent(id));
-        return "/detailsstudent";
+        return "detailsstudent";
     }
 
+    @GetMapping("/editstudent")
+    public String showEditForm(long id, Model model) {
+        model.addAttribute("student", studentService.get(id));
+        return "editstudent";
+    }
 
-
-
-
-
+    @PostMapping("/editstudent")
+    public String editStudent(StudentDto studentDto) {
+        studentService.updateStudent(studentDto);
+        return "redirect:/students";
+    }
 }

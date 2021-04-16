@@ -8,6 +8,7 @@ import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -37,6 +38,11 @@ public class StudentServiceImpl implements StudentService {
             return dto;
         }).collect(Collectors.toList());
         return studentsDto;
+    }
+
+    @Override
+    public Optional<Student> get(Long id) {
+        return studentRepository.findById(id);
     }
 
     @Override
