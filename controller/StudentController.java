@@ -4,6 +4,7 @@ package pl.coderslab.schoolmenagersoft.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.schoolmenagersoft.model.Student;
 import pl.coderslab.schoolmenagersoft.service.StudentService;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
@@ -59,8 +60,8 @@ public class StudentController {
     }
 
     @PostMapping("/editstudent")
-    public String editStudent(StudentDto studentDto) {
-        studentService.updateStudent(studentDto);
+    public String editStudent(Student student) {
+        studentService.updateStudent(student);
         return "redirect:/students";
     }
 }
