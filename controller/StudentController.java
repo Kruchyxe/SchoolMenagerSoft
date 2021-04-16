@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.schoolmenagersoft.service.StudentService;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
+import javax.persistence.EntityNotFoundException;
 import java.awt.print.Book;
 
 
@@ -47,7 +48,7 @@ public class StudentController {
 
     @GetMapping("/detailsstudent")
     public String showDetailForm(long id, Model model) {
-        model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("student", studentService.get(id).orElseThrow(EntityNotFoundException::new));
         return "detailsstudent";
     }
 

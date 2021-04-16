@@ -50,10 +50,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
-    @Override
-    public Student getStudent(Long id) {
-        return studentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    }
 
     @Override
     public Student updateStudent(StudentDto studentDto) {
