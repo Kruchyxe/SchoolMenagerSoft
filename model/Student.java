@@ -4,10 +4,7 @@ import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
@@ -19,15 +16,13 @@ public class Student {
     private Long id;
 
     @Column(name = "first_name")
-    @NotNull
-    @Size(min = 2, max = 25)
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String firstName;
     @Column(name = "last_name")
-    @NotNull
+    @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
-    @NotNull
-    @PESEL
     private int pesel;
     @NotNull
     @Digits(integer = 2, fraction = 0)
@@ -35,6 +30,7 @@ public class Student {
     @Column(name = "parent_mobile")
     private int parentMobileNumber;
     @Column(name = "parent_email")
+    @NotBlank
     @Email
     private String parentMail;
     @Column(name = "start_date")

@@ -3,12 +3,14 @@ package pl.coderslab.schoolmenagersoft.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.schoolmenagersoft.model.Student;
 import pl.coderslab.schoolmenagersoft.service.StudentService;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 import java.awt.print.Book;
 
 
@@ -37,7 +39,10 @@ public class StudentController {
     }
 
     @PostMapping("/addstudents")
-    public String addNewStudent(@ModelAttribute("student") StudentDto studentDto) {
+    public String addNewStudent(@Valid @ModelAttribute("student") StudentDto studentDto ,BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "addstudents";
+        }
         studentService.addStudent(studentDto);
         return "redirect:/students";
     }
@@ -61,7 +66,10 @@ public class StudentController {
     }
 
     @PostMapping("/editstudent")
-    public String editStudent(Student student) {
+    public String editStudent(@Valid Student student,BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "editstudent";
+        }
         studentService.updateStudent(student);
         return "redirect:/students";
     }
