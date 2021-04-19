@@ -2,12 +2,15 @@ package pl.coderslab.schoolmenagersoft.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.schoolmenagersoft.service.UserService;
 import pl.coderslab.schoolmenagersoft.web.dto.UserRegisterDto;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/registration")
@@ -30,7 +33,10 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user")UserRegisterDto userRegisterDto){
+    public String registerUserAccount(@Valid @ModelAttribute("user") UserRegisterDto userRegisterDto , BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "registration";
+        }
         userService.save(userRegisterDto);
         return "redirect:/login";
 
