@@ -6,7 +6,7 @@ import pl.coderslab.schoolmenagersoft.model.Student;
 import pl.coderslab.schoolmenagersoft.repository.StudentRepository;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 
-import javax.persistence.EntityNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
