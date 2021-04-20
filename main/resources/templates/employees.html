@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strona główna</title>
+    <title>Lista nauczycieli</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
         <div class="container-fluid">
             <a class="navbar-brand" href="#"></a>
             <button
@@ -19,20 +19,20 @@
                     data-mdb-target="#navbarNav"
                     aria-controls="navbarNav"
                     aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
+                    aria-label="Toggle navigation">
+
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page">Lista nauczycieli</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{'/students'}">Uczniowie</a>
+                        <a class="nav-link" th:href="@{'/home'}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{'/employees'}">Pracownicy</a>
+                        <a class="nav-link" th:href="@{'/students'}">Lista uczniów</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Grupy/Klasy</a>
@@ -46,24 +46,42 @@
         </div>
     </nav>
 
-    <!--    mask-->
-    <div class="bg-image">
-        <img src="/home/krzysiek/SchoolMenagerSoft/src/main/resources/static/images/back_to_school_5485429.png" class="w-50" />
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
-    </div>
-
-
-
-    <!--    -->
-
-
 </header>
 
 <main>
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Numer kom</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employee}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.mobile}"></td>
+            <td th:text="${employee.email}"></td>
+            <td><a th:href="@{/employees/detailsemployee/(id=${employee.id})}" class="btn btn-outline-primary">Szczegóły</a></td>
+            <td><a th:href="@{/empoyees/editemployee/(id=${employee.id})}" class="btn btn-outline-primary">Edytuj</a></td>
+            <td><a th:href="@{/empoyees/deleteemployee/(id=${employee.id})}" class="btn btn-outline-primary">Usuń</a></td>
 
+        </tr>
+        <div class="form-group">
+            <a th:href="@{/employees/addemployee}" class="btn btn-primary">Dodaj pracownika</a>
 
+        </div>
 
+        </tbody>
+    </table>
 </main>
 
 <footer>
@@ -73,9 +91,6 @@
             <!-- Section: Social media -->
             <section class="mb-4">
                 <!-- Facebook -->
-                <a class="btn btn-primary" style="background-color: #3b5998" href="#!" role="button"
-                ><i class="fab fa-facebook-f"></i
-                ></a>
 
             </section>
             <!-- Section: Social media -->
@@ -84,7 +99,7 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
+            © 2021 Copyright:
             <a class="text-white" href="https://github.com/Kruchyxe/SchoolMenagerSoft">Kruchyxe</a>
         </div>
         <!-- Copyright -->
