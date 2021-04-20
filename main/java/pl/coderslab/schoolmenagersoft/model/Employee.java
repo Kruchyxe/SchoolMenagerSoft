@@ -5,9 +5,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
 
     @Id
@@ -22,6 +24,7 @@ public class Employee {
     @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
+    @NotNull
     private int pesel;
 
     @Column(name = "mobile")
@@ -36,6 +39,11 @@ public class Employee {
     @Column(name = "end_hire_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate terminationOfEmployment;
+
+    @OneToMany
+    @JoinColumn(name ="employee_id")
+    private List<Student> students = new ArrayList<>();
+
 
     public Employee() {
     }
