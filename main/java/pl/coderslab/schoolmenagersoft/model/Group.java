@@ -6,8 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "classes")
@@ -17,7 +15,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Range(min=1, max=8)
+    @Range(min = 1, max = 8)
     private int number;
     @NotBlank
     @Size(max = 1)

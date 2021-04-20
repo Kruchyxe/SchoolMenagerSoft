@@ -3,7 +3,10 @@ package pl.coderslab.schoolmenagersoft.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +44,7 @@ public class Employee {
     private LocalDate terminationOfEmployment;
 
     @OneToMany
-    @JoinColumn(name ="employee_id")
+    @JoinColumn(name = "employee_id")
     private List<Student> students = new ArrayList<>();
 
 
