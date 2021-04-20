@@ -25,7 +25,7 @@ public class Group {
     public Group() {
     }
 
-    public Group(Long id, int number, String name) {
+    public Group(int number, String name) {
         this.id = id;
         this.number = number;
         this.name = name;

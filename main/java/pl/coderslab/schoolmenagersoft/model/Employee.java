@@ -51,7 +51,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long id, String firstName, String lastName,
+    public Employee(String firstName, String lastName,
                     int pesel, int mobile, String email,
                     LocalDate hireDate, LocalDate terminationOfEmployment) {
         this.id = id;
