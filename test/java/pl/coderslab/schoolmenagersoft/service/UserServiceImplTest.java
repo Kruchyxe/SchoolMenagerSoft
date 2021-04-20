@@ -7,10 +7,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceImplTest {
 
     @Test
-    void save() {
+    void shouldSaveUser() {
+        // given
+
+        // when
+
+        // then
     }
 
     @Test
-    void loadUserByUsername() {
+    void shouldLoadUserByUsername() {
+        // given
+
+        // when
+
+        // then
     }
 }
