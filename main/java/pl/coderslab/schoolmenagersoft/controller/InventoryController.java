@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.schoolmenagersoft.model.Group;
+import pl.coderslab.schoolmenagersoft.model.Inventory;
 import pl.coderslab.schoolmenagersoft.service.InventoryService;
 import pl.coderslab.schoolmenagersoft.web.dto.GroupDto;
 import pl.coderslab.schoolmenagersoft.web.dto.InventoryDto;
@@ -31,18 +33,18 @@ public class InventoryController {
     }
 
     @GetMapping("/addinventory")
-    public String showAddGroupForm(Model model){
+    public String showAddInventoryForm(Model model){
         model.addAttribute("inventory", new InventoryDto());
         return "addinventory";
     }
 
     @PostMapping("/addinventory")
-    public String addNewEmployee(@Valid @ModelAttribute("inventory") InventoryDto inventoryDto , BindingResult bindingResult) {
+    public String addNewInventory(@Valid @ModelAttribute("inventory") InventoryDto inventoryDto , BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "addinventory";
         }
         inventoryService.addInventory(inventoryDto);
-        return "redirect:/groups";
+        return "redirect:/inventories";
     }
 
     @GetMapping("/detailsinventory")
@@ -52,8 +54,23 @@ public class InventoryController {
     }
 
     @GetMapping("/deleteinventory")
-    public String deleteGroup(Long id){
+    public String deleteInventory(Long id){
         inventoryService.deleteInventoryById(id);
+        return "redirect:/inventories";
+    }
+
+    @GetMapping("/editinventory")
+    public String showEditInventoryForm(long id, Model model) {
+        model.addAttribute("inventory", inventoryService.getInventory(id));
+        return "editinventory";
+    }
+
+    @PostMapping("/editinventory")
+    public String editInventory(@Valid Inventory inventory, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "editinventory";
+        }
+        inventoryService.updateInventory(inventory);
         return "redirect:/inventories";
     }
 }

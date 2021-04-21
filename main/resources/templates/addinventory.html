@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista uczniów</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dodaj nowy środek trwały</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/home'}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/employees'}">Pracownicy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/groups'}">Grupy/Klasy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/inventories'}">Inwentaryzacja</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<main>
+
+    <body>
+    <div align="left">
+        <form th:action="@{/inventories/editinventory}" method="post" th:object="${inventory}">
+            <div class="form-group">
+                <label class="control-label" for="inventoryType">
+                    Typ/Rodzaj
+                </label>
+                <input id="inventoryType" type="text" class="form-control" th:field="*{inventoryType}"
+                       required autofocus="autofocus" placeholder="Wpisz nazwę"/>
+                <span th:if="${#fields.hasErrors('inventoryType')}" th:errors="*{inventoryType}" >Type error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="merchandiseNumber">
+                    Numer wewnętrzny
+                </label>
+                <input id="merchandiseNumber" class="form-control" th:field="*{merchandiseNumber}"
+                       required autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('merchandiseNumber')}" th:errors="*{merchandiseNumber}">Number error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="quantity">
+                    Ilość
+                </label>
+                <input id="quantity" class="form-control" th:field="*{quantity}"
+                       required autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" >Quantity error</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="invoiceNumber">
+                    Numer FV
+                </label>
+                <input id="invoiceNumber" class="form-control" th:field="*{invoiceNumber}"
+                       required autofocus="autofocus" placeholder="Wpisz numer FV"/>
+                <span th:if="${#fields.hasErrors('invoiceNumber')}" th:errors="*{invoiceNumber}" >Invoice error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="purchaseDate">
+                    Data zakupu:
+                </label>
+                <input id="purchaseDate" class="form-control" type="date" th:field="*{purchaseDate}" required
+                       autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}">Date error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="price">
+                    Cena:
+                </label>
+                <input id="price" class="form-control" th:field="*{price}"
+                       required autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" >Price error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="assigmentToPerson">
+                    Przydzielono osobie:
+                </label>
+                <input id="assigmentToPerson" class="form-control" th:field="*{assigmentToPerson}"
+                       required autofocus="autofocus" placeholder="Wpisz imię i nazwisko osoby przydzielonej do sprzętu"/>
+                <span th:if="${#fields.hasErrors('assigmentToPerson')}" th:errors="*{assigmentToPerson}" >Assigment error</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="assigmentToClass">
+                    Przydzielono do miejsca
+                </label>
+                <input id="assigmentToClass" class="form-control" th:field="*{assigmentToClass}"
+                       required autofocus="autofocus" placeholder="Wpisz miejsce przydzielone do sprzętu"/>
+                <span th:if="${#fields.hasErrors('assigmentToClass')}" th:errors="*{assigmentToClass}" >Assig error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="merchandiseLiquidationDate">
+                    Data likwidacji środka trwałego:
+                </label>
+                <input id="merchandiseLiquidationDate" class="form-control" type="date" th:field="*{merchandiseLiquidationDate}" required
+                       autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('merchandiseLiquidationDate')}" th:errors="*{merchandiseLiquidationDate}">Liqidation error</span>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="methodOfGoodsDisposal">
+                    Metoda likwidacji środka trwałego:
+                </label>
+                <input id="methodOfGoodsDisposal" class="form-control" th:field="*{methodOfGoodsDisposal}"
+                       required autofocus="autofocus" placeholder="Wpisz metodę likwidacji sprzętu"/>
+                <span th:if="${#fields.hasErrors('methodOfGoodsDisposal')}" th:errors="*{methodOfGoodsDisposal}" >Method error</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="personResponsibleForLiquidation">
+                    Osoba odpowiedzialna za likwidację
+                </label>
+                <input id="personResponsibleForLiquidation" class="form-control" th:field="*{personResponsibleForLiquidation}"
+                       required autofocus="autofocus" placeholder="Wpisz imię i nazwisko osoby likwidującej sprzęt"/>
+                <span th:if="${#fields.hasErrors('personResponsibleForLiquidation')}" th:errors="*{personResponsibleForLiquidation}">Person error</span>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" >Zapisz</button>
+
+            </div>
+        </form>
+    </div>
+    </body>
+
+
+
+
+</main>
+
+<footer>
+    <footer class="bg-light text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright:
+            <a class="text-white" href="https://github.com/Kruchyxe/SchoolMenagerSoft">Kruchyxe</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+</footer>
+
+</body>
+</html>
