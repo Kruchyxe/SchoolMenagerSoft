@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Edytuj dane ucznia</a>
+                        <a class="nav-link active" aria-current="page" href="#">Dodaj nowego pracownika</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/home'}">Home</a>
@@ -52,14 +52,13 @@
 
     <body>
     <div align="left">
-        <form th:action="@{/students/editstudent}" method="post" th:object="${student}">
-            <input type="hidden" th:field="*{id}">
+        <form th:action="@{/employees/addemployee}" method="post" th:object="${employee}">
             <div class="form-group">
                 <label class="control-label" for="firstName">
                     Imię
                 </label>
-                <input id="firstName" class="form-control"
-                       required autofocus="autofocus" th:field="*{firstName}"/>
+                <input id="firstName" type="text" class="form-control" th:field="*{firstName}"
+                       required autofocus="autofocus" placeholder="Wpisz imię nauczyciela"/>
                 <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" >Name error</span>
             </div>
 
@@ -67,64 +66,55 @@
                 <label class="control-label" for="lastName">
                     Nazwisko
                 </label>
-                <input id="lastName" class="form-control"
-                       required autofocus="autofocus" th:field="*{lastName}"/>
+                <input id="lastName" class="form-control" th:field="*{lastName}"
+                       required autofocus="autofocus" placeholder="Wpisz nazwisko nauczyciela"/>
                 <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" >Name error</span>
-
-            <div class="form-group">
-                <label class="control-label" for="age">
-                    Wiek
-                </label>
-                <input id="age" class="form-control"
-                       required autofocus="autofocus" th:field="*{age}"/>
-                <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" >Age error</span>
             </div>
+
             <div class="form-group">
                 <label class="control-label" for="pesel">
                     Pesel
                 </label>
-                <input id="pesel" class="form-control"
-                       required autofocus="autofocus" th:field="*{pesel}"/>
+                <input id="pesel" class="form-control" th:field="*{pesel}"
+                       required autofocus="autofocus"/>
                 <span th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}" >Pesel error</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="mobile">
+                    Numer kontaktowy:
+                </label>
+                <input id="mobile" class="form-control" th:field="*{mobile}"
+                       required autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}" >Mobile error</span>
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="email">
                     Email
                 </label>
-                <input id="email" class="form-control"  required
-                       autofocus="autofocus" th:field="*{parentMail}"/>
-                <span th:if="${#fields.hasErrors('parentMail')}" th:errors="*{parentMail}" >Name error</span>
+                <input id="email" class="form-control" th:field="*{email}" required
+                       autofocus="autofocus" placeholder="Wpisz adres email nauczyciela"/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Name error</span>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="mobile">
-                    Nr telefonu:Lista uczniów
+                <label class="control-label" for="hireDate">
+                    Data rozpoczęcia pracy:
                 </label>
-                <input id="mobile" class="form-control" required
-                       autofocus="autofocus" th:field="*{parentMobileNumber}" />
-                <span th:if="${#fields.hasErrors('parentMobileNumber')}" th:errors="*{parentMobileNumber}" >Name error</span>
+                <input id="hireDate" class="form-control" type="date" th:field="*{hireDate}" required
+                       autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}" >Name error</span>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="started">
-                   Data rozpoczęcia nauki:
+                <label class="control-label" for="termination">
+                   Data zakończenia pracy:
                 </label>
-                <input id="started" class="form-control" type="date"  required
-                       autofocus="autofocus" th:field="*{schoolStartDate}" />
-                <span th:if="${#fields.hasErrors('schoolStartDate')}" th:errors="*{schoolStartDate}" >Name error</span>
+                <input id="termination" class="form-control" type="date" th:field="*{terminationOfEmployment}" required
+                       autofocus="autofocus"/>
+                <span th:if="${#fields.hasErrors('terminationOfEmployment')}" th:errors="*{terminationOfEmployment}" >Name error</span>
 
             </div>
-
-            <div class="form-group">
-                <label class="control-label" for="ended">
-                    Data zakończenia nauki:
-                </label>
-                <input id="ended" class="form-control" type="date"  required
-                       autofocus="autofocus" th:field="*{schoolEndDate}" />
-                <span th:if="${#fields.hasErrors('schoolEndDate')}" th:errors="*{schoolEndDate}" >Name error</span>
-            </div>
-
 
             <div class="form-group">
                 <button type="submit" class="btn btn-success" >Zapisz</button>

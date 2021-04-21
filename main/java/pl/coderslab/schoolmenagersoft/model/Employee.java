@@ -27,7 +27,7 @@ public class Employee {
     @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
-    @NotNull
+
     private int pesel;
 
     @Column(name = "mobile")

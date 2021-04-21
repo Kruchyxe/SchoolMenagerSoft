@@ -21,7 +21,6 @@ public class EmployeeDto {
     @Size(min = 2, max = 30)
     private String lastName;
 
-    @NotNull
     private int pesel;
 
     private int mobile;
