@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">Lista klas/grup</a>
+                        <a class="nav-link active" aria-current="page">Szczegóły grupy klasy</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/home'}">Home</a>
@@ -36,6 +36,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/employees'}">Pracownicy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/groups'}">Grupy/Klasy</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/inventories'}">Inwentaryzacja</a>
@@ -54,34 +57,39 @@
         <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nazwa klasy</th>
-            <th scope="col">Numer klasy</th>
+            <th scope="col">Typ/Rodzaj</th>
+            <th scope="col">Numer wewnętrzny</th>
+            <th scope="col">Ilość</th>
+            <th scope="col">Numer FV</th>
+            <th scope="col">Data zakupu</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Przydzielono osobie:</th>
+            <th scope="col">Przydzielono do miejsca</th>
+            <th scope="col">Data likwidacji środka trwałego</th>
+            <th scope="col">Metoda likwidacji środka trwałego</th>
+            <th scope="col">Osoba odpowiedzialna za likwidację</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="group : ${group}">
-            <td th:text="${group.id}"></td>
-            <td th:text="${group.name}"></td>
-            <td th:text="${group.number}"></td>
-            <td><a th:href="@{/groups/detailsgroup/(id=${group.id})}" class="btn btn-outline-primary">Szczegóły</a></td>
-            <td><a th:href="@{/groups/editgroup/(id=${group.id})}" class="btn btn-outline-primary">Edytuj</a></td>
-            <td><a th:href="@{/groups/deletegroup/(id=${group.id})}" class="btn btn-outline-primary">Usuń</a></td>
-
+        <td th:text="${inventory.id}"></td>
+        <td th:text="${inventory.inventoryType}"></td>
+        <td th:text="${inventory.merchandiseNumber}"></td>
+        <td th:text="${inventory.quantity}"></td>
+        <td th:text="${inventory.invoiceNumber}"></td>
+        <td th:text="${inventory.purchaseDate}"></td>
+        <td th:text="${inventory.price}"></td>
+        <td th:text="${inventory.assigmentToPerson}"></td>
+        <td th:text="${inventory.assigmentToClass}"></td>
+        <td th:text="${inventory.merchandiseLiquidationDate}"></td>
+        <td th:text="${inventory.methodOfGoodsDisposal}"></td>
+        <td th:text="${inventory.personResponsibleForLiquidation}"></td>
         </tr>
-        <div class="form-group">
-            <a th:href="@{/groups/addgroup}" class="btn btn-primary">Dodaj klasę/grupę</a>
-
-        </div>
-
         </tbody>
     </table>
-
-
-
-
 </main>
 
 <footer>
@@ -102,7 +110,6 @@
             © 2021 Copyright:
             <a class="text-white" href="https://github.com/Kruchyxe/SchoolMenagerSoft">Kruchyxe</a>
         </div>
-        <!-- Copyright -->
     </footer>
 
 
