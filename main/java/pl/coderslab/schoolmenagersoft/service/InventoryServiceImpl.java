@@ -1,6 +1,7 @@
 package pl.coderslab.schoolmenagersoft.service;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 import pl.coderslab.schoolmenagersoft.model.Inventory;
 import pl.coderslab.schoolmenagersoft.repository.InventoryRepository;
 import pl.coderslab.schoolmenagersoft.web.dto.InventoryDto;
@@ -10,6 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
 public class InventoryServiceImpl implements InventoryService {
 
     private InventoryRepository inventoryRepository;
