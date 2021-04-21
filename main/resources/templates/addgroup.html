@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strona główna</title>
+    <title>Lista uczniów</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
         <div class="container-fluid">
             <a class="navbar-brand" href="#"></a>
             <button
@@ -19,17 +19,17 @@
                     data-mdb-target="#navbarNav"
                     aria-controls="navbarNav"
                     aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
+                    aria-label="Toggle navigation">
+
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">Home</a>
+                        <a class="nav-link active" aria-current="page">Dodaj nową klasę/grupę</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{'/students'}">Uczniowie</a>
+                        <a class="nav-link" th:href="@{'/home'}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/employees'}">Pracownicy</a>
@@ -46,20 +46,39 @@
         </div>
     </nav>
 
-    <!--    mask-->
-    <div class="bg-image">
-        <img src="/home/krzysiek/SchoolMenagerSoft/src/main/resources/static/images/back_to_school_5485429.png" class="w-50" />
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)"></div>
-    </div>
-
-
-
-    <!--    -->
-
-
 </header>
 
 <main>
+
+    <body>
+    <div align="left">
+        <form th:action="@{/groups/addgroup}" method="post" th:object="${group}">
+            <div class="form-group">
+                <label class="control-label" for="name">
+                    Nazwa klasy/grupy
+                </label>
+                <input id="name" type="text" class="form-control" th:field="*{name}"
+                       required autofocus="autofocus" placeholder="Wpisz nazwę klasy/grupy"/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" >Name error</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="number">
+                    Numer klasy/grupy
+                </label>
+                <input id="number" class="form-control" th:field="*{number}"
+                       required autofocus="autofocus" placeholder="Wpisz numer klasy/grupy"/>
+                <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}" >Name error</span>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" >Zapisz</button>
+
+            </div>
+        </form>
+    </div>
+    </body>
 
 
 
@@ -73,9 +92,6 @@
             <!-- Section: Social media -->
             <section class="mb-4">
                 <!-- Facebook -->
-                <a class="btn btn-primary" style="background-color: #3b5998" href="#!" role="button"
-                ><i class="fab fa-facebook-f"></i
-                ></a>
 
             </section>
             <!-- Section: Social media -->
@@ -84,7 +100,7 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
+            © 2021 Copyright:
             <a class="text-white" href="https://github.com/Kruchyxe/SchoolMenagerSoft">Kruchyxe</a>
         </div>
         <!-- Copyright -->
