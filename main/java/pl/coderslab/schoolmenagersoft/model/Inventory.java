@@ -38,6 +38,10 @@ public class Inventory {
     @NotBlank
     @Size(min = 2, max = 30)
     private String assigmentToPerson;
+    @Column(name = "assigment_class")
+    @NotBlank
+    @Size(min = 2, max = 30)
+    private String assigmentToClass;
     @Column(name = "liquidation_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate merchandiseLiquidationDate;
@@ -55,7 +59,7 @@ public class Inventory {
 
     public Inventory(String inventoryType, int merchandiseNumber,
                      double quantity, String invoiceNumber, LocalDate purchaseDate,
-                     BigDecimal price, String assigmentToPerson, LocalDate merchandiseLiquidationDate,
+                     BigDecimal price, String assigmentToPerson,String assigmentToClass, LocalDate merchandiseLiquidationDate,
                      String methodOfGoodsDisposal, String personResponsibleForLiquidation) {
         this.id = id;
         this.inventoryType = inventoryType;
@@ -65,6 +69,7 @@ public class Inventory {
         this.purchaseDate = purchaseDate;
         this.price = price;
         this.assigmentToPerson = assigmentToPerson;
+        this.assigmentToClass = assigmentToClass;
         this.merchandiseLiquidationDate = merchandiseLiquidationDate;
         this.methodOfGoodsDisposal = methodOfGoodsDisposal;
         this.personResponsibleForLiquidation = personResponsibleForLiquidation;
@@ -132,6 +137,14 @@ public class Inventory {
 
     public void setAssigmentToPerson(String assigmentToPerson) {
         this.assigmentToPerson = assigmentToPerson;
+    }
+
+    public String getAssigmentToClass() {
+        return assigmentToClass;
+    }
+
+    public void setAssigmentToClass(String assigmentToClass) {
+        this.assigmentToClass = assigmentToClass;
     }
 
     public LocalDate getMerchandiseLiquidationDate() {

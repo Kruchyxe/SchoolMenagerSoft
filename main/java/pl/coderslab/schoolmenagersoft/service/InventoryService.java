@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface InventoryService {
 
-    Group addInventory(InventoryDto inventoryDto);
+    Inventory addInventory(InventoryDto inventoryDto);
 
     List<InventoryDto> findAllInventories();
 
