@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista nauczycieli</title>
+    <title>Lista uczniów</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">Lista nauczycieli</a>
+                        <a class="nav-link active" aria-current="page">Szczegóły grupy klasy</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/home'}">Home</a>
@@ -40,7 +40,9 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/groups'}">Grupy/Klasy</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/inventories'}">Inwentaryzacja</a>
+                    </li>
 
                 </ul>
             </div>
@@ -61,30 +63,31 @@
             <th scope="col">Numer FV</th>
             <th scope="col">Data zakupu</th>
             <th scope="col">Cena</th>
+            <th scope="col">Przydzielono osobie:</th>
+            <th scope="col">Przydzielono do miejsca</th>
+            <th scope="col">Data likwidacji środka trwałego</th>
+            <th scope="col">Metoda likwidacji środka trwałego</th>
+            <th scope="col">Osoba odpowiedzialna za likwidację</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="inventory : ${inventory}">
-            <td th:text="${inventory.id}"></td>
-            <td th:text="${inventory.inventoryType}"></td>
-            <td th:text="${inventory.merchandiseNumber}"></td>
-            <td th:text="${inventory.quantity}"></td>
-            <td th:text="${inventory.invoiceNumber}"></td>
-            <td th:text="${inventory.purchaseDate}"></td>
-            <td th:text="${inventory.price}"></td>
-            <td><a th:href="@{/inventories/detailsinventory/(id=${inventory.id})}" class="btn btn-outline-primary">Szczegóły</a></td>
-            <td><a th:href="@{/inventories/editinventory/(id=${inventory.id})}" class="btn btn-outline-primary">Edytuj</a></td>
-            <td><a th:href="@{/inventories/deleteinventory/(id=${inventory.id})}" class="btn btn-outline-primary">Usuń</a></td>
-
+        <td th:text="${inventory.id}"></td>
+        <td th:text="${inventory.inventoryType}"></td>
+        <td th:text="${inventory.merchandiseNumber}"></td>
+        <td th:text="${inventory.quantity}"></td>
+        <td th:text="${inventory.invoiceNumber}"></td>
+        <td th:text="${inventory.purchaseDate}"></td>
+        <td th:text="${inventory.price}"></td>
+        <td th:text="${inventory.assigmentToPerson}"></td>
+        <td th:text="${inventory.assigmentToClass}"></td>
+        <td th:text="${inventory.merchandiseLiquidationDate}"></td>
+        <td th:text="${inventory.methodOfGoodsDisposal}"></td>
+        <td th:text="${inventory.personResponsibleForLiquidation}"></td>
         </tr>
-        <div class="form-group">
-            <a th:href="@{/inventories/addinventory}" class="btn btn-primary">Dodaj przedmiot</a>
-
-        </div>
-
         </tbody>
     </table>
 </main>
@@ -107,7 +110,6 @@
             © 2021 Copyright:
             <a class="text-white" href="https://github.com/Kruchyxe/SchoolMenagerSoft">Kruchyxe</a>
         </div>
-        <!-- Copyright -->
     </footer>
 
 
