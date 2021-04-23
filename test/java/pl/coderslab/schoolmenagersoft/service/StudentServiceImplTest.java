@@ -88,7 +88,6 @@ class StudentServiceImplTest {
         // then
         verify(studentRepository, times(1)).deleteById(anyLong());
 
-
     }
 
     @Test
