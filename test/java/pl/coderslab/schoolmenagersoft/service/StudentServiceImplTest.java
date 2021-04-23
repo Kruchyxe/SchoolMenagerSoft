@@ -12,11 +12,15 @@ import pl.coderslab.schoolmenagersoft.repository.StudentRepository;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class StudentServiceImplTest {
@@ -25,7 +29,7 @@ class StudentServiceImplTest {
     private StudentRepository studentRepository;
 
     // test class cant be mocked
-    @InjectMocks
+    
     private StudentServiceImpl underTest;
 
     @BeforeEach
@@ -82,19 +86,11 @@ class StudentServiceImplTest {
     @Test
     void shouldGetStudent() {
 
-        // given
-        Student student = new Student();
-        student.setId(2L);
-        student.setFirstName("Andrzej");
-        student.setLastName("Maliniak");
-        student.setPesel(888888888);
-        student.setAge(10);
+        when(underTest.get(anyLong())).thenReturn(Optional.of(new Student()));
 
-        // when
-        underTest.get(2L);
+        Optional<Student> student = underTest.get(2L);
 
-        // then
-        assertThat(student.getId()).isEqualTo(2L);
+        assertNotNull(student);
     }
 
     @Test
@@ -109,7 +105,7 @@ class StudentServiceImplTest {
         student.setAge(10);
 
         // when
-        underTest.deleteStudentById(student.getId());
+        underTest.deleteStudentById(2L);
 
         // then
         assertThat(student.getId()).isEqualTo(2L);

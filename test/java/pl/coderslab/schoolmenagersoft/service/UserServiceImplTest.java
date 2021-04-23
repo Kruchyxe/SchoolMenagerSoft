@@ -30,10 +30,8 @@ class UserServiceImplTest {
     }
 
     @Test
-    @Disabled
     void shouldLoadUserByUsername() {
         // given
-        UserRegisterDto user = new UserRegisterDto();
 
 
         // when
