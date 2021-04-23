@@ -14,20 +14,27 @@ import java.time.LocalDate;
 public class StudentDto {
 
     private Long id;
+
     @NotBlank
     @Size(min = 2, max = 30)
     private String firstName;
+
     @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
     private int pesel;
+
     @NotNull
     @Digits(integer = 2, fraction = 0)
     private int age;
+
     private int parentMobileNumber;
+
     private String parentMail;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolStartDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolEndDate;
 
