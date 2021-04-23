@@ -105,7 +105,6 @@ class StudentServiceImplTest {
         // when
         underTest.updateStudent(student);
 
-
         // then
         assertThat(student.getAge()).isEqualTo(10);
     }
