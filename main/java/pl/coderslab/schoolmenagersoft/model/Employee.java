@@ -23,6 +23,7 @@ public class Employee {
     @NotBlank
     @Size(min = 2, max = 30)
     private String firstName;
+
     @Column(name = "last_name")
     @NotBlank
     @Size(min = 2, max = 30)
@@ -32,13 +33,16 @@ public class Employee {
 
     @Column(name = "mobile")
     private int mobile;
+
     @Column(name = "email")
     @NotBlank
     @Email
     private String email;
+
     @Column(name = "hire_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate hireDate;
+
     @Column(name = "end_hire_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate terminationOfEmployment;

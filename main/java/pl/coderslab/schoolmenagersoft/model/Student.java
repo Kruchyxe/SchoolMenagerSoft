@@ -19,23 +19,30 @@ public class Student {
     @NotBlank
     @Size(min = 2, max = 30)
     private String firstName;
+
     @Column(name = "last_name")
     @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
+
     private int pesel;
+
     @NotNull
     @Digits(integer = 2, fraction = 0)
     private int age;
+
     @Column(name = "parent_mobile")
     private int parentMobileNumber;
+
     @Column(name = "parent_email")
     @NotBlank
     @Email
     private String parentMail;
+
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolStartDate;
+
     @Column(name = "end_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate schoolEndDate;

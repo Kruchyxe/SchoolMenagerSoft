@@ -14,9 +14,11 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Range(min = 1, max = 8)
     private int number;
+
     @NotBlank
     @Size(max = 1)
     private String name;

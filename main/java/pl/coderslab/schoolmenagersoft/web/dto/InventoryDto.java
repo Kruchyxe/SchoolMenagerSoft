@@ -28,6 +28,7 @@ public class InventoryDto {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate purchaseDate;
+
     @NotNull
     private BigDecimal price;
 

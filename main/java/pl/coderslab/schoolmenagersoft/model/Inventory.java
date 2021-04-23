@@ -16,39 +16,49 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "inventory_name")
     @NotBlank
     @Size(min = 2, max = 30)
     private String inventoryType;
+
     @Column(name = "inventory_number")
     @NotNull
     private int merchandiseNumber;
-    @Column(name = "quantity")
+
     @NotNull
     private double quantity;
+
     @Column(name = "invoice_number")
     @NotBlank
     private String invoiceNumber;
+
     @Column(name = "purchase_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate purchaseDate;
+
     @NotNull
     private BigDecimal price;
+
     @Column(name = "assigment_person")
     @NotBlank
     @Size(min = 2, max = 30)
     private String assigmentToPerson;
+
     @Column(name = "assigment_class")
     @NotBlank
     @Size(min = 2, max = 30)
     private String assigmentToClass;
+
     @Column(name = "liquidation_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate merchandiseLiquidationDate;
+
     @Column(name = "liquidation_method")
     @NotBlank
     @Size(min = 2, max = 30)
     private String methodOfGoodsDisposal;
+
     @Column(name = "responsible_for_liquidation")
     @NotBlank
     @Size(min = 2, max = 30)
