@@ -18,9 +18,9 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class StudentServiceImplTest {
@@ -29,7 +29,6 @@ class StudentServiceImplTest {
     private StudentRepository studentRepository;
 
     // test class cant be mocked
-    
     private StudentServiceImpl underTest;
 
     @BeforeEach
@@ -42,27 +41,14 @@ class StudentServiceImplTest {
     void shouldAddStudent() {
 
         // given
-        StudentDto studentDto = new StudentDto(
-                "Antek",
-                "Malinowski",
-                88888888,
-                10,
-                666666666,
-                "anton@o2.pl",
-                LocalDate.parse("2021-04-21"),
-                LocalDate.parse("2021-06-18")
-        );
+        StudentDto student = new StudentDto("Adam","Mickiewicz",
+                22222222,10,6666666,
+                "mama@wp.pl",LocalDate.parse("2021-04-12"),LocalDate.parse("2022-01-12"));
 
         // when
-        underTest.addStudent(studentDto);
+        underTest.addStudent(student);
 
-        // then
-        ArgumentCaptor<Student> studentDtoArgumentCaptor =
-                ArgumentCaptor.forClass(Student.class);
-        verify(studentRepository)
-                .save(studentDtoArgumentCaptor.capture());
-        assertThat(studentDto).isSameAs(studentDto);
-
+        assertNotNull(student);
 
     }
 
@@ -95,20 +81,14 @@ class StudentServiceImplTest {
 
     @Test
     void shouldDeleteStudentById() {
-
-        // given
-        Student student = new Student();
-        student.setId(2L);
-        student.setFirstName("Andrzej");
-        student.setLastName("Maliniak");
-        student.setPesel(888888888);
-        student.setAge(10);
-
         // when
-        underTest.deleteStudentById(2L);
+
+        underTest.deleteStudentById(anyLong());
 
         // then
-        assertThat(student.getId()).isEqualTo(2L);
+        verify(studentRepository, times(1)).deleteById(anyLong());
+
+
     }
 
     @Test
