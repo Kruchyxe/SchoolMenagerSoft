@@ -25,6 +25,7 @@ public class Student {
     @Size(min = 2, max = 30)
     private String lastName;
 
+    // zmienić z int na long
     private int pesel;
 
     @NotNull
