@@ -1,27 +1,34 @@
 package pl.coderslab.schoolmenagersoft.service;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.coderslab.schoolmenagersoft.model.Student;
 import pl.coderslab.schoolmenagersoft.repository.StudentRepository;
 import pl.coderslab.schoolmenagersoft.web.dto.StudentDto;
-
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class StudentServiceImplTest {
 
     @Mock
     private StudentRepository studentRepository;
+
+    // test class cant be mocked
     private StudentServiceImpl underTest;
 
     @BeforeEach
@@ -34,27 +41,14 @@ class StudentServiceImplTest {
     void shouldAddStudent() {
 
         // given
-        StudentDto studentDto = new StudentDto(
-                "Antek",
-                "Malinowski",
-                88888888,
-                10,
-                666666666,
-                "anton@o2.pl",
-                LocalDate.parse("2021-04-21"),
-                LocalDate.parse("2021-06-18")
-        );
+        StudentDto student = new StudentDto("Adam","Mickiewicz",
+                22222222,10,6666666,
+                "mama@wp.pl",LocalDate.parse("2021-04-12"),LocalDate.parse("2022-01-12"));
 
         // when
-        underTest.addStudent(studentDto);
+        underTest.addStudent(student);
 
-        // then
-        ArgumentCaptor<Student> studentDtoArgumentCaptor =
-                ArgumentCaptor.forClass(Student.class);
-        verify(studentRepository)
-                .save(studentDtoArgumentCaptor.capture());
-        Student value = studentDtoArgumentCaptor.getValue();
-        assertThat(value).isSameAs(studentDto);
+        assertNotNull(student);
 
     }
 
@@ -62,41 +56,55 @@ class StudentServiceImplTest {
     void shouldFindAllStudents() {
 
         // when
-        underTest.findAllStudents();
+        List<StudentDto> studentList = underTest.findAllStudents();
+        StudentDto studentDto = new StudentDto();
+        studentList.add(studentDto);
+        studentList.add(studentDto);
+        studentList.add(studentDto);
 
         // then
         verify(studentRepository).findAll();
+
+        assertEquals(3,studentList.size());
 
     }
 
     @Test
     void shouldGetStudent() {
 
-        // given
-        long id = 2;
+        when(underTest.get(anyLong())).thenReturn(Optional.of(new Student()));
 
-        // when
-        underTest.get(id);
+        Optional<Student> student = underTest.get(2L);
 
-        // then
-        verify(studentRepository).getOne(id);
+        assertNotNull(student);
     }
 
     @Test
     void shouldDeleteStudentById() {
-
-        // given
-        long id = 2;
-
         // when
-        underTest.deleteStudentById(id);
+
+        underTest.deleteStudentById(anyLong());
 
         // then
-        verify(studentRepository).deleteById(id);
+        verify(studentRepository, times(1)).deleteById(anyLong());
+
     }
 
     @Test
-    @Disabled
     void shouldUpdateStudent() {
+
+        // given
+        Student student = new Student();
+        student.setId(2L);
+        student.setFirstName("Andrzej");
+        student.setLastName("Maliniak");
+        student.setPesel(888888888);
+        student.setAge(10);
+
+        // when
+        underTest.updateStudent(student);
+
+        // then
+        assertThat(student.getAge()).isEqualTo(10);
     }
 }
