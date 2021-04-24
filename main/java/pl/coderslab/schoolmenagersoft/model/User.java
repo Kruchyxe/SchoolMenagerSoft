@@ -28,10 +28,11 @@ public class User {
     @NotBlank
     @Email
     private String email;
+
     @NotBlank
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // sprawdzic cascade all
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(

@@ -48,7 +48,7 @@ class StudentServiceImplTest {
         // when
         underTest.addStudent(student);
 
-        assertNotNull(student);
+        assertNotNull(student);   // verify lub argumentCaptor
 
     }
 
