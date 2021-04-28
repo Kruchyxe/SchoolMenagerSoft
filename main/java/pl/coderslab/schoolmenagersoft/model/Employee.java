@@ -1,5 +1,6 @@
 package pl.coderslab.schoolmenagersoft.model;
 
+import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -29,14 +30,15 @@ public class Employee {
     @Size(min = 2, max = 30)
     private String lastName;
 
-    private int pesel;
+    @PESEL
+    private String pesel;
 
     @Column(name = "mobile")
     private int mobile;
 
     @Column(name = "email")
     @NotBlank
-    @Email
+    @Email(message = "{email.not.valid}")
     private String email;
 
     @Column(name = "hire_date")
@@ -56,7 +58,7 @@ public class Employee {
     }
 
     public Employee(String firstName, String lastName,
-                    int pesel, int mobile, String email,
+                    String pesel, int mobile, String email,
                     LocalDate hireDate, LocalDate terminationOfEmployment) {
         this.id = id;
         this.firstName = firstName;
@@ -92,11 +94,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(int pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 

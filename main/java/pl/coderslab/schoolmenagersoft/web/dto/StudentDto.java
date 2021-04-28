@@ -4,10 +4,7 @@ package pl.coderslab.schoolmenagersoft.web.dto;
 import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 
@@ -22,7 +19,9 @@ public class StudentDto {
     @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
-    private int pesel;
+
+    @PESEL
+    private String pesel;
 
     @NotNull
     @Digits(integer = 2, fraction = 0)
@@ -30,6 +29,7 @@ public class StudentDto {
 
     private int parentMobileNumber;
 
+    @Email(message = "{email.not.valid}")
     private String parentMail;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -41,7 +41,7 @@ public class StudentDto {
     public StudentDto() {
     }
 
-    public StudentDto(String firstName, String lastName, int pesel, int age, int parentMobileNumber, String parentMail, LocalDate schoolStartDate, LocalDate schoolEndDate) {
+    public StudentDto(String firstName, String lastName, String pesel, int age, int parentMobileNumber, String parentMail, LocalDate schoolStartDate, LocalDate schoolEndDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
@@ -76,11 +76,11 @@ public class StudentDto {
         this.lastName = lastName;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(int pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 

@@ -42,7 +42,7 @@ class StudentServiceImplTest {
 
         // given
         StudentDto student = new StudentDto("Adam","Mickiewicz",
-                22222222,10,6666666,
+                "22222222",10,6666666,
                 "mama@wp.pl",LocalDate.parse("2021-04-12"),LocalDate.parse("2022-01-12"));
 
         // when
@@ -98,7 +98,7 @@ class StudentServiceImplTest {
         student.setId(2L);
         student.setFirstName("Andrzej");
         student.setLastName("Maliniak");
-        student.setPesel(888888888);
+        student.setPesel("888888888");
         student.setAge(10);
 
         // when

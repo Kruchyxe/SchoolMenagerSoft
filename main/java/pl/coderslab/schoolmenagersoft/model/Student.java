@@ -26,7 +26,8 @@ public class Student {
     private String lastName;
 
     // zmienić z int na long
-    private int pesel;
+    @PESEL
+    private String pesel;
 
     @NotNull
     @Digits(integer = 2, fraction = 0)
@@ -37,7 +38,7 @@ public class Student {
 
     @Column(name = "parent_email")
     @NotBlank
-    @Email
+    @Email(message = "{email.not.valid}")
     private String parentMail;
 
     @Column(name = "start_date")
@@ -52,7 +53,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, int pesel, int age, int parentMobileNumber, String parentMail, LocalDate schoolStartDate, LocalDate schoolEndDate) {
+    public Student(String firstName, String lastName, String pesel, int age, int parentMobileNumber, String parentMail, LocalDate schoolStartDate, LocalDate schoolEndDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,11 +89,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(int pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 

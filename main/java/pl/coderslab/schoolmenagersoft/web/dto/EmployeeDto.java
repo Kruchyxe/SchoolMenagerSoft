@@ -1,5 +1,6 @@
 package pl.coderslab.schoolmenagersoft.web.dto;
 
+import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -21,12 +22,13 @@ public class EmployeeDto {
     @Size(min = 2, max = 30)
     private String lastName;
 
-    private int pesel;
+    @PESEL
+    private String pesel;
 
     private int mobile;
 
     @NotBlank
-    @Email
+    @Email(message = "{email.not.valid}")
     private String email;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -40,7 +42,7 @@ public class EmployeeDto {
 
     public EmployeeDto(Long id, String firstName,
                        String lastName,
-                       int pesel, int mobile,
+                       String pesel, int mobile,
                        String email,
                        LocalDate hireDate, LocalDate terminationOfEmployment) {
         this.id = id;
@@ -77,11 +79,11 @@ public class EmployeeDto {
         this.lastName = lastName;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(int pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 
